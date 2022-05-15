@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quiz_app/auth/controller/auth_controller.dart';
 import 'package:quiz_app/auth/forgot/forgot_password.dart';
 import 'package:quiz_app/auth/signup/signup_page.dart';
 import 'package:quiz_app/panels/admin/views/dashboard_page.dart';
+import 'package:quiz_app/panels/user/views/student_attempt_page.dart';
 import 'package:quiz_app/utils/size_config.dart';
 import 'package:quiz_app/widgets/my_input_field.dart';
 import 'package:quiz_app/widgets/primary_button.dart';
@@ -13,7 +15,7 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  final AuthController controller = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     void inputValidation() {
@@ -72,7 +74,16 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(height: 2 * SizeConfig.heightMultiplier),
                   PrimaryButton(
                     onTap: () {
-                      inputValidation();
+                      // if (emailController.text == 'teacher') {
+                      //   inputValidation();
+                      // }
+                      // if (emailController.text == 'student') {
+                      //   Get.to(() => StudentAttemptPage());
+                      // }
+                      controller.login(
+                        emailController.text,
+                        passwordController.text,
+                      );
                     },
                     text: 'Login',
                   ),

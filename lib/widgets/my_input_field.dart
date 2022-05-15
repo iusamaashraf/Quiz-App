@@ -13,7 +13,7 @@ class MyInputField extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
   final TextInputType textInputType;
-  final String Function(String? val) validator;
+  final String? Function(String? val)? validator;
   final bool isObsure;
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class MyInputField extends StatelessWidget {
           obscureText: isObsure,
           validator: validator,
           keyboardType: TextInputType.emailAddress,
-          // controller: controller,
+          controller: controller,
           decoration: InputDecoration(
             hintText: hint,
             enabledBorder: InputBorder.none,
